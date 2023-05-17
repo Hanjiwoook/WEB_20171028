@@ -13,7 +13,7 @@
         <script type="text/javascript" src="js/login.js" defer></script>
 
     </head>
-    <body class="text-center">
+    <body class="text-center" onload="init();">
         <br><br><br>
         <div class="mx-auto" style="width: 500px;">
             <a href="https://web--tahba.run.goorm.site" target="_blank"><img src="image/googlelogo_color_big.png" class="img-fluid" alt="구글이미지"></a>
@@ -32,7 +32,7 @@
 
         <div class="checkbox mb-3">
           <label>
-            <input type="checkbox" value="remember-me"> 아이디 기억!
+            <input type="checkbox" value="remember-me" id="idSaveCheck"> 아이디 기억!
           </label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" onclick="login()" type="submit">로그인</button>
