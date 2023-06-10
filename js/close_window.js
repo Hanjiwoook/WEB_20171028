@@ -7,7 +7,8 @@ show_time();            // 실시간 시간 보여주기
 
 function show_time() {
     let divClock = document.getElementById('Time');
-    divClock.innerText = close_time2; // 10초 삽입 시작
+    let timeString = close_time2.toString(); // 숫자를 문자열로 변환
+    divClock.innerText = "남은 시간은 " + timeString + "초 입니다."; // 문자열 추가해서 출력
     close_time2--; // 1초씩 감소
     setTimeout(show_time, 1000); // 1초마다 갱신
 

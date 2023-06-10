@@ -5,7 +5,7 @@ function login(){
     let check = document.querySelector("#idSaveCheck");
     
     form.action = "../index_login.html";
-    form.method = "get"
+    form.method = "post"
     
     if(check.checked == true) { // 아이디 체크 o
             alert("쿠키를 저장합니다.");
@@ -16,6 +16,13 @@ function login(){
             setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
     }
     
+    if(id.value.length === 0 || password.value.length === 0){
+        alert("아이디와 비밀번호를 모두 입력해주세요.");
+        return; // 아이디나 비번 비어있으면 함수실행중단
+    }
+        login_check();
+}
+    
 function closePopup() {
     
     if (document.getElementById('check_popup').value) {
@@ -23,14 +30,6 @@ function closePopup() {
         setCookie("id", "N", 1);
         console.log("쿠키를 설정합니다.");
         self.close();
-    }
-}
-    
-    if(id.value.length === 0 || password.value.length === 0){
-        alert("아이디와 비밀번호를 모두 입력해주세요.")
-    }else{
-        session_set(); //세션생성
-        form.submit();
     }
 }
 
@@ -62,6 +61,30 @@ function get_id(){
         alert(getParameters('id') + '님 방갑습니다!'); // 메시지 창 출력
     }
 }
+
+function login_check() {
+    let id = document.querySelector("#floatingInput").value;
+    let password = document.querySelector("#floatingPassword").value;
+    
+    // 이메일 형식 검사 정규 표현식
+    let emailRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
+    // 패스워드 형식 검사 정규 표현식
+    let passwordRegex = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    
+    if (!emailRegex.test(id)) {
+        alert("이메일 형식이 올바르지 않습니다.");
+        return;
+    }
+    
+    if (!passwordRegex.test(password)) {
+        alert("패스워드 형식이 올바르지 않습니다.");
+        return;
+    }
+    
+    // 이후 로그인 처리 코드를 작성하거나 폼을 서버로 제출하는 등의 동작을 수행
+    // ...
+}
+
 
 function addJavascript(jsname) {
     var th = document.getElementsByTagName('head')[0];
