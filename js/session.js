@@ -25,6 +25,7 @@ function session_set(){ //세션 저장(객체)
         let en_text = encrypt_text(objString); // 암호화
         sessionStorage.setItem("Session_Storage_object", objString);
         sessionStorage.setItem("Session_Storage_encrypted", en_text);
+        setTimeout(logout, 5 * 60 * 1000);
     } else {
         alert("세션 스토리지 지원 x");
     }   
@@ -78,4 +79,12 @@ function session_join_set(){ //세션 저장(객체)
     } else {
         alert("세션 스토리지 지원 x");
     }   
+}
+
+function session_join_get() { //세션 읽기
+    if (sessionStorage) {
+       return sessionStorage.getItem("Session_Storage_encrypted");
+    } else {
+        alert("세션 스토리지 지원 x");
+    }
 }

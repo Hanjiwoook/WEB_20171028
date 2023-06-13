@@ -3,6 +3,11 @@ function login(){
     let id = document.querySelector("#floatingInput");
     let password = document.querySelector("#floatingPassword");
     let check = document.querySelector("#idSaveCheck");
+    let loginFailCount = getCookie("login_fail_count") || 0; // 기존 로그인 실패 횟수를 가져옴
+    if (loginFailCount >= 3) {
+        alert("로그인이 제한되었습니다. 잠시 후에 다시 시도해주세요.");
+        return;
+    }
     
     form.action = "../index_login.html";
     form.method = "post"
@@ -83,6 +88,28 @@ function login_check() {
     
     // 이후 로그인 처리 코드를 작성하거나 폼을 서버로 제출하는 등의 동작을 수행
     // ...
+}
+
+function login_count() {
+    // 기존 쿠키의 카운트 값을 얻어온다.
+    let count = parseInt(getCookie("login_cnt")) || 0;
+    
+    // 카운트 값을 +1 업데이트한다.
+    count++;
+    
+    // 업데이트된 카운트 값을 쿠키에 저장한다.
+    setCookie("login_cnt", count, 365);
+}
+
+function logout_count() {
+    // 기존 쿠키의 카운트 값을 얻어온다.
+    let count = parseInt(getCookie("logout_cnt")) || 0;
+    
+    // 카운트 값을 +1 업데이트한다.
+    count++;
+    
+    // 업데이트된 카운트 값을 쿠키에 저장한다.
+    setCookie("logout_cnt", count, 365);
 }
 
 
